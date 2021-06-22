@@ -22,6 +22,6 @@ def csv_to_json(csvFilePath, jsonFilePath):
         jsonString = json.dumps(jsonArray, indent=4)
         jsonf.write(jsonString)
              
-csvFilePath = r'Data/ChannelsTop100x.csv'
-jsonFilePath = r'Data/ChannelsTop100x.json'
+csvFilePath = r'ChannelsTop100x.csv'
+jsonFilePath = r'ChannelsTop100x.json'
 csv_to_json(csvFilePath, jsonFilePath)
