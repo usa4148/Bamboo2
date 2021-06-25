@@ -19,3 +19,7 @@ Years 2000, 2010, and 2020 Tornado Data in Illinois
 
 For our project, we chose to work Tornado Data provided by the National Oceanic and Atmospheric Adminstration (NOAA) that includes data from 1950 to 2021 for the United States. This dataset is rather large so we decided to work with data specifically from Illinois and compare years 2000, 2010, and 2020. 
 
+After our data was cleaned, we connected it to SQLite. 
+
+
+
