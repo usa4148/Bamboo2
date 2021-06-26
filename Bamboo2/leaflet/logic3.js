@@ -69,7 +69,6 @@ streetmap.addTo(myMap);
 
 // create layer; will attach data later on
 var tornadoes = new L.LayerGroup();
-var tornado_alley = new L.LayerGroup();
 var year2000 = new L.LayerGroup();
 var year2010 = new L.LayerGroup();
 var year2020 = new L.LayerGroup();
@@ -78,11 +77,10 @@ var year2020 = new L.LayerGroup();
 
 // Create overlay object to hold our overlay layer
 var overlayMaps = {
-  "Tornadoes in IL": tornadoes,
-  "Tornado Alley 2020": tornado_alley,
-  "IL 2000": year2000,
-  "IL 2010": year2010,
-  "IL 2020": year2020
+  "Tornadoes": tornadoes,
+  "2000": year2000,
+  "2010": year2010,
+  "2020": year2020
 };
 
 // Create a layer control
@@ -117,113 +115,66 @@ d3.csv(queryUrl, function(data) {
     L.circle(location, {
       fillOpacity: 0.75,
       color: "black",
-      fillColor: FScaleColor(+data[i].TOR_F_SCALE),
+      fillColor: FScaleColor(+data[i].MAGNITUDE),
       // Setting our circle's radius equal to the output of our markerSize function
       // This will make our marker's size proportionate to its population
-      radius: data[i].TOR_LENGTH*300
-    }).bindPopup("<h3>" + data[i].BEGIN_DATE_TIME + "</h3> <hr> </p>Source: " + data[i].SOURCE + "</p>F Scale: " + data[i].TOR_F_SCALE + "</p>").addTo(tornadoes);
+      radius: data[i].MAGNITUDE*180
+    }).bindPopup("<h3>" + data[i].BEGIN_DATE_TIME + "</h3> <hr> </p>Magnitude: " + data[i].MAGNITUDE + "</p>").addTo(tornadoes);
   }
 });
 
+// add 2000
+url = "../Tornadoes_2000.csv";
+
+d3.csv(url, function(data) {
+for (var j =0; j <data.length; j++) {
+    var location = L.latLng(data[j].BEGIN_LAT, data[j].BEGIN_LONG);
+    L.circle(location, {
+      fillOpacity: 0.75,
+      color: "black",
+      fillColor: FScaleColor(+data[j].MAGNITUDE),
+      radius: data[j].MAGNITUDE*180
+    }).bindPopup("<h3>" + data[j].BEGIN_DATE_TIME + "</h3> <hr> </p>Magnitude: " + data[j].MAGNITUDE + "</p>").addTo(year2000);
+  }
+  year2000.addTo(myMap);
+});
+
+// add 2010
+url1 = "../Tornadoes_2010.csv";
+
+d3.csv(url1, function(data) {
+for (var k =0; k <data.length; k++) {
+    var location = L.latLng(data[k].BEGIN_LAT, data[k].BEGIN_LONG);
+    L.circle(location, {
+      fillOpacity: 0.75,
+      color: "black",
+      fillColor: FScaleColor(+data[k].MAGNITUDE),
+      radius: data[k].MAGNITUDE*180
+    }).bindPopup("<h3>" + data[k].BEGIN_DATE_TIME + "</h3> <hr> </p>Magnitude: " + data[k].MAGNITUDE + "</p>").addTo(year2010);
+  }
+  // year2010.addTo(myMap);
+});
+
+// add 2020
+url2 = "../Tornadoes_2020.csv";
+
+d3.csv(url2, function(data) {
+for (var l =0; l <data.length; l++) {
+    var location = L.latLng(data[l].BEGIN_LAT, data[l].BEGIN_LONG);
+    L.circle(location, {
+      fillOpacity: 0.75,
+      color: "black",
+      fillColor: FScaleColor(+data[l].MAGNITUDE),
+      radius: data[l].MAGNITUDE*180
+    }).bindPopup("<h3>" + data[l].BEGIN_DATE_TIME + "</h3> <hr> </p>Magnitude: " + data[l].MAGNITUDE + "</p>").addTo(year2020);
+  }
+  // year2020.addTo(myMap);
+});
 //L.circle([41.28, -90.24], 5000).addTo(myMap);
 
   // Here are some additional examples:  https://geospatialresponse.wordpress.com/2015/07/26/leaflet-geojson-pointtolayer/ 
 
-// add tornado alley
-var Url = "../Tornado Alley_2020.csv";
-
-d3.csv(Url, function(data) {
-    console.log(data)
-    console.log(data[0].TOR_F_SCALE)
-  // Once we get a response, send the data.features object to the createFeatures function
-
-  // Create a GeoJSON layer containing the features array on the earthquakeData object
-  // Run the onEachFeature function once for each piece of data in the array
- for (var j = 0; j < data.length; j++) {
-    //location = [data[i].BEGIN_LAT, data[i].BEGIN_LON];
-    var location = L.latLng(data[j].BEGIN_LAT, data[j].BEGIN_LON);
-    L.circle(location, {
-      fillOpacity: 0.75,
-      color: "black",
-      fillColor: FScaleColor(+data[j].TOR_F_SCALE),
-      // Setting our circle's radius equal to the output of our markerSize function
-      // This will make our marker's size proportionate to its population
-      radius: data[j].TOR_LENGTH*300
-    }).bindPopup("<h3>" + data[j].BEGIN_DATE_TIME + "</h3> <hr> </p>Source: " + data[j].SOURCE + "</p>F Scale: " + data[j].TOR_F_SCALE + "</p>").addTo(tornado_alley);
-  }
-});
-
- // add 2000 
- var Url1 = "../Tornadoes_2000.csv";
-
- d3.csv(Url1, function(data) {
-     console.log(data)
-     console.log(data[0].TOR_F_SCALE)
-   // Once we get a response, send the data.features object to the createFeatures function
  
-   // Create a GeoJSON layer containing the features array on the earthquakeData object
-   // Run the onEachFeature function once for each piece of data in the array
-  for (var k = 0; k < data.length; k++) {
-     //location = [data[i].BEGIN_LAT, data[i].BEGIN_LON];
-     var location = L.latLng(data[k].BEGIN_LAT, data[k].BEGIN_LON);
-     L.circle(location, {
-       fillOpacity: 0.75,
-       color: "black",
-       fillColor: FScaleColor(+data[k].TOR_F_SCALE),
-       // Setting our circle's radius equal to the output of our markerSize function
-       // This will make our marker's size proportionate to its population
-       radius: data[k].TOR_LENGTH*300
-     }).bindPopup("<h3>" + data[k].BEGIN_DATE_TIME + "</h3> <hr> </p>Source: " + data[k].SOURCE + "</p>F Scale: " + data[k].TOR_F_SCALE + "</p>").addTo(year2000);
-   }
- });
-
-  // add 2010 
-var Url2 = "../Tornadoes_2010.csv";
-
-d3.csv(Url2, function(data) {
-    console.log(data)
-    console.log(data[0].TOR_F_SCALE)
-  // Once we get a response, send the data.features object to the createFeatures function
-
-  // Create a GeoJSON layer containing the features array on the earthquakeData object
-  // Run the onEachFeature function once for each piece of data in the array
- for (var l = 0; l < data.length; l++) {
-    //location = [data[i].BEGIN_LAT, data[i].BEGIN_LON];
-    var location = L.latLng(data[l].BEGIN_LAT, data[l].BEGIN_LON);
-    L.circle(location, {
-      fillOpacity: 0.75,
-      color: "black",
-      fillColor: FScaleColor(+data[l].TOR_F_SCALE),
-      // Setting our circle's radius equal to the output of our markerSize function
-      // This will make our marker's size proportionate to its population
-      radius: data[l].TOR_LENGTH*300
-    }).bindPopup("<h3>" + data[l].BEGIN_DATE_TIME + "</h3> <hr> </p>Source: " + data[l].SOURCE + "</p>F Scale: " + data[l].TOR_F_SCALE + "</p>").addTo(year2010);
-  }
-});
-
- // add 2020 
- var Url3 = "../Tornadoes_2020.csv";
-
- d3.csv(Url3, function(data) {
-     console.log(data)
-     console.log(data[0].TOR_F_SCALE)
-   // Once we get a response, send the data.features object to the createFeatures function
- 
-   // Create a GeoJSON layer containing the features array on the earthquakeData object
-   // Run the onEachFeature function once for each piece of data in the array
-  for (var m = 0; m < data.length; m++) {
-     //location = [data[i].BEGIN_LAT, data[i].BEGIN_LON];
-     var location = L.latLng(data[m].BEGIN_LAT, data[m].BEGIN_LON);
-     L.circle(location, {
-       fillOpacity: 0.75,
-       color: "black",
-       fillColor: FScaleColor(+data[m].TOR_F_SCALE),
-       // Setting our circle's radius equal to the output of our markerSize function
-       // This will make our marker's size proportionate to its population
-       radius: data[m].TOR_LENGTH*300
-     }).bindPopup("<h3>" + data[m].BEGIN_DATE_TIME + "</h3> <hr> </p>Source: " + data[m].SOURCE + "</p>F Scale: " + data[m].TOR_F_SCALE + "</p>").addTo(year2020);
-   }
- });
 
 
 var legend = L.control({position: 'bottomright'});
@@ -231,11 +182,11 @@ var legend = L.control({position: 'bottomright'});
 legend.onAdd = function (myMap) {
 
     var div = L.DomUtil.create('div', 'info legend'),
-        grades = ["EFU", "EF0", "EF1", "EF2", "EF3"],
+        grades = [0, 15, 30, 45, 60, 80],
         labels = [];
 
-    //loop through our density intervals and generate a label with a colored square for each interval
-    div.innerHTML += '<h3>F Scale</h3>'
+    // loop through our density intervals and generate a label with a colored square for each interval
+    div.innerHTML += '<h3>Tornado Magnitude</h3>'
     for (var i = 0; i < grades.length; i++) {
         div.innerHTML +=
             '<i style="background:' + FScaleColor(grades[i] + 1) + '"></i> ' +
@@ -247,29 +198,29 @@ legend.onAdd = function (myMap) {
 
 legend.addTo(myMap);
 
-function circleRadius(TOR_LENGTH){
-    return TOR_LENGTH;
+function circleRadius(MAGNITUDE){
+    return MAGNITUDE;
 }
 
 //color changes with fscale
 function FScaleColor(fscale){
-  if (fscale === "EFU"){
+  if (fscale > 80){
     color = "purple";
   }
 
-  else if (fscale === "EF0"){
+  else if (fscale > 60){
     color = "blue";
   }
 
-  else if (fscale === "EF1"){
+  else if (fscale > 45){
     color = "green"
   }
 
-  else if (fscale === "EF2"){
+  else if (fscale > 30){
     color = "yellow"
   }
 
-  else if (fscale === "EF3"){
+  else if (fscale > 15){
     color = "orange"
   }
 
