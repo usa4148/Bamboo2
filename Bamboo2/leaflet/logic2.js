@@ -108,11 +108,11 @@ d3.csv(queryUrl, function(data) {
     var location = L.latLng(data[i].BEGIN_LAT, data[i].BEGIN_LON);
     L.circle(location, {
       fillOpacity: 0.75,
-      color: "white",
+      color: "black",
       fillColor: FScaleColor(+data[i].MAGNITUDE),
       // Setting our circle's radius equal to the output of our markerSize function
       // This will make our marker's size proportionate to its population
-      radius: data[i].MAGNITUDE*98
+      radius: data[i].MAGNITUDE*180
     }).bindPopup("<h3>" + data[i].BEGIN_DATE_TIME + "</h3> <hr> </p>Magnitude: " + data[i].MAGNITUDE + "</p>").addTo(tornadoes);
   }
 });
@@ -129,7 +129,7 @@ var legend = L.control({position: 'bottomright'});
 legend.onAdd = function (myMap) {
 
     var div = L.DomUtil.create('div', 'info legend'),
-        grades = [80, 40, 15, 8, 5, 0],
+        grades = [0, 15, 30, 40, 60, 80],
         labels = [];
 
     // loop through our density intervals and generate a label with a colored square for each interval
@@ -155,19 +155,19 @@ function FScaleColor(fscale){
     color = "purple";
   }
 
-  else if (fscale > 40){
+  else if (fscale > 60){
     color = "blue";
   }
 
-  else if (fscale > 15){
+  else if (fscale > 40){
     color = "green"
   }
 
-  else if (fscale > 8){
+  else if (fscale > 30){
     color = "yellow"
   }
 
-  else if (fscale > 5){
+  else if (fscale > 15){
     color = "orange"
   }
 
