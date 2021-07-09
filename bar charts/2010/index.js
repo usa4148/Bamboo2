@@ -73,7 +73,7 @@ const render = data => {
       .text(titleText);
 };
 
-csv('data.csv').then(data => {
+csv('2010.csv').then(data => {
   data.forEach(d => {
     d.population = +d.population * 1000;
   });
