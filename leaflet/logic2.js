@@ -95,7 +95,7 @@ L.control.layers(baseMaps, overlayMaps, {
   collapsed: false
 }).addTo(myMap);
 
-var queryUrl = "../Tornadoes_2000_2010_2020.csv";
+var queryUrl = "./Tornadoes_2000_2010_2020.csv";
 
 //d3.request("../Tornadoes_2000_2010_2020.csv")
   //.mimeType("text/csv")
@@ -130,7 +130,7 @@ d3.csv(queryUrl, function(data) {
   // Here are some additional examples:  https://geospatialresponse.wordpress.com/2015/07/26/leaflet-geojson-pointtolayer/ 
 
 // add tornado alley
-var Url = "../Tornado Alley_2020.csv";
+var Url = "./Tornado Alley_2020.csv";
 
 d3.csv(Url, function(data) {
     console.log(data)
@@ -154,7 +154,7 @@ d3.csv(Url, function(data) {
 });
 
  // add 2000 
- var Url1 = "../Tornadoes_2000.csv";
+ var Url1 = "./Tornadoes_2000.csv";
 
  d3.csv(Url1, function(data) {
      console.log(data)
@@ -178,7 +178,7 @@ d3.csv(Url, function(data) {
  });
 
   // add 2010 
-var Url2 = "../Tornadoes_2010.csv";
+var Url2 = "./Tornadoes_2010.csv";
 
 d3.csv(Url2, function(data) {
     console.log(data)
@@ -202,7 +202,7 @@ d3.csv(Url2, function(data) {
 });
 
  // add 2020 
- var Url3 = "../Tornadoes_2020.csv";
+ var Url3 = "./Tornadoes_2020.csv";
 
  d3.csv(Url3, function(data) {
      console.log(data)
