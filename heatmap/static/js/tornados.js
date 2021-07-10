@@ -3,7 +3,17 @@ var myMap = L.map("map", {
     zoom: 6
   });
 
-L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
+//function init() {
+//  L.map("map", {
+//    center: [40.6331, -89.3985],
+//    zoom: 6
+//  }).addTo(myMap);
+//}
+
+
+
+
+var illinoismap = L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
   attribution: "© <a href='https://www.mapbox.com/about/maps/'>Mapbox</a> © <a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a> <strong><a href='https://www.mapbox.com/map-feedback/' target='_blank'>Improve this map</a></strong>",
   tileSize: 512,
   maxZoom: 15,
@@ -16,7 +26,7 @@ L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
 var csvfile = "data/Tornados_2000.csv";
 
 // Call updatePlotly() when a change takes place to the DOM
-d3.selectAll("#selDataset").on("change", updateCSVfile);
+d3.select("#selDataset").on("change", updateCSVfile);
 
 // This function is called when a dropdown menu item is selected
 function updateCSVfile() {
@@ -34,11 +44,12 @@ function updateCSVfile() {
   else if (dataset === 'dataset3') {
     csvfile = "data/Tornados_2020.csv";
   }
+  init();
 }
 
 
-
-//d3.csv("data/Tornados_2000.csv", function(data, err) {
+function init() {
+  //d3.csv("data/Tornados_2000.csv", function(data, err) {
 d3.csv(csvfile).then(function(data, err) {
    if (err) throw err;
 
@@ -94,4 +105,6 @@ d3.csv(csvfile).then(function(data, err) {
 
 });
 
+}
 
+init();

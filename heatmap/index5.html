@@ -8,19 +8,22 @@
     <!-- Leaflet CSS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.3/dist/leaflet.css" integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ==" crossorigin="" />
     <!-- Our CSS  -->
-    <link rel="stylesheet" href="heatmap/static/css/style.css" />
+    <link rel="stylesheet" href="./static/css/style.css" />
 
   </head>
 
   <body>
 
-    <div id="map"></div>
-
-    <select id="selDataset">
+    
+    <div id="choice"></div>
+     <select id="selDataset">
       <option value="dataset1">Illinois Tornados 2000</option>
       <option value="dataset2">Illinois Tornados 2010</option>
       <option value="dataset2">Illinois Tornados 2020</option>
-    </select>
+     </select>
+    </div>
+
+    <div id="map"></div>
 
 
     <!-- API key -->
