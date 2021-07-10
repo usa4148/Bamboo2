@@ -1,3 +1,10 @@
+// ------------------------------------------------------ //
+// Heatmap by Dan C                                       //
+// Web Visualizations Project                             //
+// DataScience BootCamp 2021                              //
+// Some code borrowed from class lessons                  //
+// ------------------------------------------------------ //
+
 var myMap = L.map("map", {
     center: [40.6331, -89.3985],
     zoom: 6
