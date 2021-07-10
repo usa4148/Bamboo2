@@ -1,6 +1,6 @@
 # Project 2 - Illinois Tornadoes through the Years
 
-This is Project 3 for Northwestern's Data Science Bootcamp 2021. Our task was to choose an interesting dataset and provide an interactive way for users to explore the data. Using a combination of of a Python Flask - powered API, HTML/CSS, JavaScript, D3, and SQLite, we created a website with three distinct views: the homepage, a map, and chart (edit)
+This is Project 2 for Northwestern's Data Science Bootcamp 2021. Our task was to choose an interesting dataset and provide an interactive way for users to explore the data. Using a combination of of a Python Flask - powered API, HTML/CSS, JavaScript, D3, and SQLite, we created a website with three distinct views: the homepage, a map, and chart (edit)
 
 Team Members: Dan Cusick, Michelle Goldberg, and Vaidehee Shah
 
