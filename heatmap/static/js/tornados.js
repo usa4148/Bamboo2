@@ -45,7 +45,7 @@ function updateCSVfile() {
   init();
 }
 
-
+// Main Rendering, Draws additional points upon dropdown event
 function init() {
   
 d3.csv(csvfile).then(function(data, err) {
@@ -85,20 +85,8 @@ d3.csv(csvfile).then(function(data, err) {
        }
 
     }
-    console.log(heatArray);
+    //console.log(heatArray);
 
-    //if (heat.hasLayer(myMap)) {
-    //  myMap.clearLayers();
-    //}
-    //myMap.clear();
-
-    //myMap.redraw();
-    
-    //if (L.hasLayer(heat)) {
-      //L.removeLayer(heat);
-      //markers= new L.markerClusterGroup();
-      //map.addLayer(markers);
-    //}
     if (heat) {
       myMap.removeLayer(heat);
     }
@@ -117,8 +105,8 @@ d3.csv(csvfile).then(function(data, err) {
           '1.0': 'red'
         }
     }).addTo(myMap);
-    myMap._reset();
-    myMap._update();
+    //myMap._reset();
+    //myMap._update();
 
 });
 
