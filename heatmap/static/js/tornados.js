@@ -23,7 +23,7 @@ var illinoismap = L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{
 }).addTo(myMap); 
 
 // Set the default dataset
-var csvfile = "data/Tornados_2000.csv";
+var csvfile = "data/Tornadoes_2000.csv";
 
 // Call updatePlotly() when a change takes place to the DOM
 d3.select("#selDataset").on("change", updateCSVfile);
@@ -36,13 +36,13 @@ function updateCSVfile() {
   var dataset = dropdownMenu.property("value");
 
   if (dataset === 'dataset1') {
-    csvfile = "data/Tornados_2000.csv";
+    csvfile = "data/Tornadoes_2000.csv";
   }
   else if (dataset === 'dataset2') {
-    csvfile = "data/Tornados_2010.csv";
+    csvfile = "data/Tornadoes_2010.csv";
   }
   else if (dataset === 'dataset3') {
-    csvfile = "data/Tornados_2020.csv";
+    csvfile = "data/Tornadoes_2020.csv";
   }
   init();
 }
