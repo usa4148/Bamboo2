@@ -7,7 +7,7 @@
 
 var myMap = L.map("map", {
     center: [40.6331, -89.3985],
-    zoom: 6
+    zoom: 7
   });
 
 
