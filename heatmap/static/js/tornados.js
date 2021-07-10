@@ -3,15 +3,6 @@ var myMap = L.map("map", {
     zoom: 6
   });
 
-//function init() {
-//  L.map("map", {
-//    center: [40.6331, -89.3985],
-//    zoom: 6
-//  }).addTo(myMap);
-//}
-
-
-
 
 var illinoismap = L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
   attribution: "© <a href='https://www.mapbox.com/about/maps/'>Mapbox</a> © <a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a> <strong><a href='https://www.mapbox.com/map-feedback/' target='_blank'>Improve this map</a></strong>",
@@ -49,7 +40,7 @@ function updateCSVfile() {
 
 
 function init() {
-  //d3.csv("data/Tornados_2000.csv", function(data, err) {
+  
 d3.csv(csvfile).then(function(data, err) {
    if (err) throw err;
 
@@ -88,6 +79,23 @@ d3.csv(csvfile).then(function(data, err) {
 
     }
     console.log(heatArray);
+
+    //if (heat.hasLayer(myMap)) {
+    //  myMap.clearLayers();
+    //}
+    //myMap.clear();
+
+    //myMap.redraw();
+    
+    //if (L.hasLayer(heat)) {
+      //L.removeLayer(heat);
+      //markers= new L.markerClusterGroup();
+      //map.addLayer(markers);
+    //}
+    if (heat) {
+      myMap.removeLayer(heat);
+    }
+   
     var heat = L.heatLayer(heatArray, {
         radius: 30,
         blur: 1,
@@ -102,6 +110,8 @@ d3.csv(csvfile).then(function(data, err) {
           '1.0': 'red'
         }
     }).addTo(myMap);
+    myMap._reset();
+    myMap._update();
 
 });
 
