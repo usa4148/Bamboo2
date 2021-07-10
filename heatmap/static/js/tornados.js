@@ -12,8 +12,34 @@ L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
   accessToken: API_KEY
 }).addTo(myMap); 
 
+// Set the default dataset
+var csvfile = "data/Tornados_2000.csv";
+
+// Call updatePlotly() when a change takes place to the DOM
+d3.selectAll("#selDataset").on("change", updateCSVfile);
+
+// This function is called when a dropdown menu item is selected
+function updateCSVfile() {
+  // Use D3 to select the dropdown menu
+  var dropdownMenu = d3.select("#selDataset");
+  // Assign the value of the dropdown menu option to a variable
+  var dataset = dropdownMenu.property("value");
+
+  if (dataset === 'dataset1') {
+    csvfile = "data/Tornados_2000.csv";
+  }
+  else if (dataset === 'dataset2') {
+    csvfile = "data/Tornados_2010.csv";
+  }
+  else if (dataset === 'dataset3') {
+    csvfile = "data/Tornados_2020.csv";
+  }
+}
+
+
+
 //d3.csv("data/Tornados_2000.csv", function(data, err) {
-d3.csv("data/Tornados_2000.csv").then(function(data, err) {
+d3.csv(csvfile).then(function(data, err) {
    if (err) throw err;
 
    var heatArray = [];
